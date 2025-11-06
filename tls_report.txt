@@ -1,0 +1,26 @@
+Task 2 – SSL/TLS in HTTPS
+
+Website: google.com
+Command used: openssl s_client -connect google.com:443
+
+Certificate Details:
+  Subject: CN=*.google.com
+  Issuer: C=US, O=Google Trust Services, CN=WE2
+  Validity: From Oct 13 08:37:46 2025 GMT To Jan 5 08:37:45 2026 GMT
+  Public Key: EC, 256 bit
+  Cipher Suite: TLS_AES_256_GCM_SHA384
+  Protocol Version: TLSv1.3
+
+Analysis:
+The TLS handshake successfully established a secure channel between client and server using asymmetric encryption. 
+The server sent its digital certificate for verification, containing Google's public key and issuer information. 
+Once verified, both sides derived a shared session key using ECDHE and began encrypted communication.
+
+Purpose:
+TLS ensures the confidentiality and integrity of transmitted data, protecting against eavesdropping and tampering.
+
+Verification Note:
+The error "unable to get local issuer certificate" appears because the local OpenSSL store does not include Google's full CA chain; this does not indicate a handshake failure.
+
+Conclusion:
+The HTTPS connection to google.com successfully used TLSv1.3 with AES-256-GCM encryption.
